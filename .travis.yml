@@ -11,8 +11,10 @@ matrix:
 notifications:
   email: false
 
-before_script:
-  - sudo apt-get -y install unixodbc-dev
+env:
+  global:
+  - CIBW_BEFORE_BUILD="apt-get -y install unixodbc-dev"
+
 
 script:
   - $PIP install cibuildwheel==1.0.0

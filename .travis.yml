@@ -13,7 +13,7 @@ notifications:
 
 env:
   global:
-  - CIBW_BEFORE_BUILD="apt-get -y install unixodbc-dev"
+  - CIBW_BEFORE_BUILD="yum install unixodbc-dev"
 
 
 script:

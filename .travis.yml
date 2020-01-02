@@ -11,6 +11,9 @@ matrix:
 notifications:
   email: false
 
+before_script:
+  - sudo apt-get -y install unixodbc-dev
+
 script:
   - $PIP install cibuildwheel==1.0.0
   - cibuildwheel --output-dir wheelhouse

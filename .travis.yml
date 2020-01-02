@@ -1,21 +1,18 @@
 language: python
-sudo: false
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - gcc-4.8
-    - g++-4.8
-    - unixodbc-dev
+matrix:
+  include:
+  - sudo: required
+    services:
+      - docker
+    env: PIP=pip
 
-install:
-  - python setup.py install
+notifications:
+  email: false
 
-script: true
+script:
+  - $PIP install cibuildwheel==1.0.0
+  - cibuildwheel --output-dir wheelhouse
+  # upload to PyPI
+  - python -m pip install twine
+  - python -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*cp3*.whl

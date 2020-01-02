@@ -13,11 +13,11 @@ notifications:
 
 env:
   global:
-  - CIBW_BEFORE_BUILD="yum install unixODBC-devel"
+  - CIBW_BEFORE_BUILD="yum -y install unixODBC-devel"
 
 
 script:
-  - $PIP install cibuildwheel==1.0.0
+  - $PIP install cibuildwheel==1.1.0
   - cibuildwheel --output-dir wheelhouse
   # upload to PyPI
   - python -m pip install twine
